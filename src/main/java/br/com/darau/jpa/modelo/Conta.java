@@ -1,9 +1,8 @@
 package br.com.darau.jpa.modelo;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Collection;
+import java.util.List;
 
 @Entity
 public class Conta {
@@ -14,6 +13,8 @@ public class Conta {
     private Integer agencia;
     private Integer numero;
     private Double saldo;
+    @OneToMany
+    private  List<Movimentacao> movimentacoes;
 
     public Long getId() {
         return id;
@@ -53,5 +54,9 @@ public class Conta {
 
     public void setSaldo(Double saldo) {
         this.saldo = saldo;
+    }
+
+    public List<Movimentacao> getMovimentacoes() {
+        return movimentacoes;
     }
 }
