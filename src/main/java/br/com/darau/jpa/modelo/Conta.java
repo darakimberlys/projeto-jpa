@@ -1,7 +1,6 @@
 package br.com.darau.jpa.modelo;
 
 import javax.persistence.*;
-import java.util.Collection;
 import java.util.List;
 
 @Entity
@@ -13,8 +12,13 @@ public class Conta {
     private Integer agencia;
     private Integer numero;
     private Double saldo;
-    @OneToMany
-    private  List<Movimentacao> movimentacoes;
+
+    @OneToMany(mappedBy = "conta", fetch = FetchType.EAGER)
+    private List<Movimentacao> movimentacoes;
+
+    public void setSaldo(Double saldo) {
+        this.saldo = saldo;
+    }
 
     public Long getId() {
         return id;
@@ -48,15 +52,8 @@ public class Conta {
         this.numero = numero;
     }
 
-    public Double getSaldo() {
-        return saldo;
-    }
-
-    public void setSaldo(Double saldo) {
-        this.saldo = saldo;
-    }
 
     public List<Movimentacao> getMovimentacoes() {
-        return movimentacoes;
+        return this.movimentacoes;
     }
 }

@@ -11,16 +11,13 @@ public class Movimentacao {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     @Enumerated
     private TipoMovimentacao tipoMovimentacao;
     private LocalDateTime data;
     private String descricao;
     private BigDecimal valor;
-
     @ManyToOne
     private Conta conta;
-
     @OneToMany
     private List<Categoria> categorias = new ArrayList<>();
 
@@ -79,5 +76,4 @@ public class Movimentacao {
     public void setValor(BigDecimal valor) {
         this.valor = valor;
     }
-
 }
